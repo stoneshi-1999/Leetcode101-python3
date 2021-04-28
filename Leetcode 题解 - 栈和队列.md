@@ -1,5 +1,5 @@
-# Leetcode-python3
-# Leetcode 题解 - 栈和队列
+# Leetcode101-python3
+# Leetcode101 题解 - 栈和队列
 <!-- GFM-TOC -->
 * [Leetcode 题解 - 栈和队列](#leetcode-题解---栈和队列)
     * [1. 用栈实现队列](#1-用栈实现队列)
