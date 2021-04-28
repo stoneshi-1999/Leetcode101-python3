@@ -98,6 +98,7 @@ class MyStack:
 ```
 
 方法2：一个队列
+主要是入栈的时候，先把队列之前的所有元素全部依次出队再入队
 
 ```python
 class MyStack:
