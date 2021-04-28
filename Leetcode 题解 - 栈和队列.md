@@ -51,38 +51,91 @@ class MyQueue(object):
 
 [Leetcode](https://leetcode.com/problems/implement-stack-using-queues/description/) / [力扣](https://leetcode-cn.com/problems/implement-stack-using-queues/description/)
 
+方法1：使用单队列（list）实现。使用一个队列，队列添加元素后，反转前n-1个元素，栈顶元素始终保留在队首
 在将一个元素 x 插入队列时，为了维护原来的后进先出顺序，需要让 x 插入队列首部。而队列的默认插入顺序是队列尾部，因此在将 x 插入队列尾部之后，需要让除了 x 之外的所有元素出队列，再入队列。
 
-```java
-class MyStack {
+```python
+class MyStack:
 
-    private Queue<Integer> queue;
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.q = []
 
-    public MyStack() {
-        queue = new LinkedList<>();
-    }
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.q.append(x)
+        q_length = len(self.q)
+        while q_length > 1:
+            self.q.append(self.q.pop(0)) #反转前n-1个元素，栈顶元素始终保留在队首
+            q_length -= 1
 
-    public void push(int x) {
-        queue.add(x);
-        int cnt = queue.size();
-        while (cnt-- > 1) {
-            queue.add(queue.poll());
-        }
-    }
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        return self.q.pop(0)
 
-    public int pop() {
-        return queue.remove();
-    }
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.q[0]
 
-    public int top() {
-        return queue.peek();
-    }
 
-    public boolean empty() {
-        return queue.isEmpty();
-    }
-}
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return not bool(self.q)
+
 ```
+
+方法2：使用双队列（deque）实现
+```python
+from collections import deque
+class MyStack:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.data = deque()
+        self.help = deque()
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.data.append(x)
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        while len(self.data) > 1:
+            self.help.append(self.data.popleft())
+        tmp = self.data.popleft()        
+        self.help,self.data = self.data,self.help
+        return tmp
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        while len(self.data) != 1:
+            self.help.append(self.data.popleft())
+        tmp = self.data.popleft()
+        self.help.append(tmp)
+        self.help,self.data = self.data,self.help
+        return tmp
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return not bool(self.data)
+
+```
+
 
 ## 3. 最小值栈
 
