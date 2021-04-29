@@ -253,6 +253,7 @@ The second 1's next greater number needs to search circularly, which is also 2.
 ```
 
 与 739. Daily Temperatures (Medium) 不同的是，数组是循环数组，并且最后要求的不是距离而是下一个元素。
+使用取模运算 % 可以把下标 i 映射到数组 nums 长度的 0 - N 内。
 
 ```python
 class Solution:
