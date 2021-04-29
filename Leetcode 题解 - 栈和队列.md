@@ -253,20 +253,22 @@ The second 1's next greater number needs to search circularly, which is also 2.
 ```
 
 与 739. Daily Temperatures (Medium) 不同的是，数组是循环数组，并且最后要求的不是距离而是下一个元素。
+同样使用单调栈，但是
 使用取模运算 % 可以把下标 i 映射到数组 nums 长度的 0 - N 内。
 
 ```python
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
         n = len(nums)
-        ret = [-1] * n
+        res = [-1] * n
         stk = list()
 
         for i in range(n * 2 - 1):
-            while stk and nums[stk[-1]] < nums[i % n]:
-                ret[stk.pop()] = nums[i % n]
+            value = nums[i % n]
+            while stk and  value > nums[stk[-1]]:
+                res[stk.pop()] = nums[i % n]
             stk.append(i % n)
         
-        return ret
+        return res
 
 ```
