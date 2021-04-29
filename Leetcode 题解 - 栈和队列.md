@@ -186,7 +186,7 @@ class MinStack:
 
 Output : true
 ```
-
+只把左括号“{，（，[” 放入栈中，等待匹配
 ```python
 class Solution:
     def isValid(self, s: str) -> bool:
