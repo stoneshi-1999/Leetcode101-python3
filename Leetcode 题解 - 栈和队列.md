@@ -187,6 +187,9 @@ class MinStack:
 Output : true
 ```
 只把左括号“{，（，[” 放入栈中，等待匹配
+
+in和字典的操作，判断键是否存在于字典中： https://www.runoob.com/python3/python3-att-dictionary-in-html.html
+
 ```python
 class Solution:
     def isValid(self, s: str) -> bool:
@@ -194,13 +197,13 @@ class Solution:
                ']':'[',
                '}':'{'}
         stack = []
-        for i in s:
-            if stack and i in dic:
+        for i in s:#遍历s字符串中的字符
+            if stack and i in dic:#如果stack不为空，且i为dic的键，即为右括号时，进行匹配
                 if stack[-1] == dic[i]:
                     stack.pop()
                 else:
                     return False
-            else:
+            else:#如果stcak为空，或，i不是dic的键，即为左括号，则入栈
                 stack.append(i)
         return not stack
 ```
