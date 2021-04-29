@@ -149,7 +149,7 @@ class MyStack:
 
 [Leetcode](https://leetcode.com/problems/min-stack/description/) / [力扣](https://leetcode-cn.com/problems/min-stack/description/)
 
-用一个辅助栈来存“每一次入栈push时”的最小值。
+用一个辅助栈来存“每一次入栈push时”的最小值，所以注意每次出栈时，两个栈都要出。
 
 ```python
 class MinStack:
@@ -221,20 +221,18 @@ Output: [1, 1, 4, 2, 1, 1, 0, 0]
 
 在遍历数组时用栈把数组中的数存起来，如果当前遍历的数比栈顶元素来的大，说明栈顶元素的下一个比它大的数就是当前元素。
 
-```java
-public int[] dailyTemperatures(int[] temperatures) {
-    int n = temperatures.length;
-    int[] dist = new int[n];
-    Stack<Integer> indexs = new Stack<>();
-    for (int curIndex = 0; curIndex < n; curIndex++) {
-        while (!indexs.isEmpty() && temperatures[curIndex] > temperatures[indexs.peek()]) {
-            int preIndex = indexs.pop();
-            dist[preIndex] = curIndex - preIndex;
-        }
-        indexs.add(curIndex);
-    }
-    return dist;
-}
+```python
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        n = len(T)
+        ans, nxt, big = [0] * n, dict(), 10**9
+        for i in range(n - 1, -1, -1):
+            warmer_index = min(nxt.get(t, big) for t in range(T[i] + 1, 102))
+            if warmer_index != big:
+                ans[i] = warmer_index - i
+            nxt[T[i]] = i
+        return ans
+
 ```
 
 ## 6. 循环数组中比当前元素大的下一个元素
@@ -253,21 +251,18 @@ The second 1's next greater number needs to search circularly, which is also 2.
 
 与 739. Daily Temperatures (Medium) 不同的是，数组是循环数组，并且最后要求的不是距离而是下一个元素。
 
-```java
-public int[] nextGreaterElements(int[] nums) {
-    int n = nums.length;
-    int[] next = new int[n];
-    Arrays.fill(next, -1);
-    Stack<Integer> pre = new Stack<>();
-    for (int i = 0; i < n * 2; i++) {
-        int num = nums[i % n];
-        while (!pre.isEmpty() && nums[pre.peek()] < num) {
-            next[pre.pop()] = num;
-        }
-        if (i < n){
-            pre.push(i);
-        }
-    }
-    return next;
-}
+```python
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ret = [-1] * n
+        stk = list()
+
+        for i in range(n * 2 - 1):
+            while stk and nums[stk[-1]] < nums[i % n]:
+                ret[stk.pop()] = nums[i % n]
+            stk.append(i % n)
+        
+        return ret
+
 ```
