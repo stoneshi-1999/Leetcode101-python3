@@ -220,19 +220,20 @@ Output: [1, 1, 4, 2, 1, 1, 0, 0]
 ```
 
 单调栈：
+单调栈满足从栈底到栈顶元素对应的温度递减，因此每次有元素进栈时，会将温度更低的元素全部移除，并更新出栈元素对应的等待天数，这样可以确保等待天数一定是最小的。
 
 ```python
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         length = len(T)
         ans = [0] * length
-        stack = []#用于存储下标（计算升温间隔日期）
+        stack = []#单调栈，用于存储下标不存储温度（用于计算升温间隔日期），但是存储的下标对应温度递减，栈顶对应温度最高。
         for i in range(length):
             temperature = T[i]
-            while stack and temperature > T[stack[-1]]:#当栈不为空，且新温度大于当前栈顶温度
+            while stack and temperature > T[stack[-1]]:#当栈不为空，且新温度大于当前栈顶温度时，出栈，计算升温间隔日期
                 prev_index = stack.pop()
                 ans[prev_index] = i - prev_index
-            stack.append(i)
+            stack.append(i)#新温度小于等于当前栈顶温度，则入栈
         return ans
 
 ```
