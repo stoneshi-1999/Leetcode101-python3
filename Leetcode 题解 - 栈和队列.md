@@ -219,18 +219,20 @@ Input: [73, 74, 75, 71, 69, 72, 76, 73]
 Output: [1, 1, 4, 2, 1, 1, 0, 0]
 ```
 
-在遍历数组时用栈把数组中的数存起来，如果当前遍历的数比栈顶元素来的大，说明栈顶元素的下一个比它大的数就是当前元素。
+单调栈：
 
 ```python
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
-        n = len(T)
-        ans, nxt, big = [0] * n, dict(), 10**9
-        for i in range(n - 1, -1, -1):
-            warmer_index = min(nxt.get(t, big) for t in range(T[i] + 1, 102))
-            if warmer_index != big:
-                ans[i] = warmer_index - i
-            nxt[T[i]] = i
+        length = len(T)
+        ans = [0] * length
+        stack = []#用于存储下标（计算升温间隔日期）
+        for i in range(length):
+            temperature = T[i]
+            while stack and temperature > T[stack[-1]]:#当栈不为空，且新温度大于当前栈顶温度
+                prev_index = stack.pop()
+                ans[prev_index] = i - prev_index
+            stack.append(i)
         return ans
 
 ```
