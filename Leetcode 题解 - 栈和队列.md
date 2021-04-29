@@ -227,7 +227,7 @@ class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         length = len(T)
         ans = [0] * length
-        stack = []#单调栈，用于存储下标不存储温度（用于计算升温间隔日期），但是存储的下标对应温度递减，栈顶对应温度最高。
+        stack = []#单调栈，用于存储下标不存储温度（用于计算升温间隔日期），但是存储的下标对应温度递减，栈底对应温度最高。
         for i in range(length):
             temperature = T[i]
             while stack and temperature > T[stack[-1]]:#当栈不为空，且新温度大于当前栈顶温度时
