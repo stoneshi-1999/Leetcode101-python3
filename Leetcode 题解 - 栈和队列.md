@@ -149,39 +149,28 @@ class MyStack:
 
 [Leetcode](https://leetcode.com/problems/min-stack/description/) / [力扣](https://leetcode-cn.com/problems/min-stack/description/)
 
-```java
-class MinStack {
+用一个辅助栈来存“每一次入栈push时”的最小值。
 
-    private Stack<Integer> dataStack;
-    private Stack<Integer> minStack;
-    private int min;
+```python
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = [math.inf]
 
-    public MinStack() {
-        dataStack = new Stack<>();
-        minStack = new Stack<>();
-        min = Integer.MAX_VALUE;
-    }
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        self.min_stack.append(min(x, self.min_stack[-1]))
 
-    public void push(int x) {
-        dataStack.add(x);
-        min = Math.min(min, x);
-        minStack.add(min);
-    }
+    def pop(self) -> None:
+        self.stack.pop()
+        self.min_stack.pop()
 
-    public void pop() {
-        dataStack.pop();
-        minStack.pop();
-        min = minStack.isEmpty() ? Integer.MAX_VALUE : minStack.peek();
-    }
+    def top(self) -> int:
+        return self.stack[-1]
 
-    public int top() {
-        return dataStack.peek();
-    }
+    def getMin(self) -> int:
+        return self.min_stack[-1]
 
-    public int getMin() {
-        return minStack.peek();
-    }
-}
 ```
 
 对于实现最小值队列问题，可以先将队列使用栈来实现，然后就将问题转换为最小值栈，这个问题出现在 编程之美：3.7。
