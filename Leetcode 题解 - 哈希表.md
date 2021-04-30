@@ -47,7 +47,7 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashtable = dict()
         for i, num in enumerate(nums):
-            if target - num in hashtable:
+            if target - num in hashtable:#target - num的计算结果在哈希表里的键key中，所以键key为数值，值value为下标
                 return [hashtable[target - num], i]
             hashtable[nums[i]] = i#最后输出的是下标，所以哈希表里键key为数值，值value为下标
         return []
