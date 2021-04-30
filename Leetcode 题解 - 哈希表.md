@@ -75,6 +75,8 @@ class Solution:
 
  [力扣](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)/[题解](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/) 
 
+[add() 方法](https://www.runoob.com/python3/ref-set-add.html/)用于给集合添加元素，如果添加的元素在集合中已存在，则不执行任何操作。
+
 ```python
 class Solution:
     def findRepeatNumber(self, nums: [int]) -> int:
