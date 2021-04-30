@@ -59,7 +59,8 @@ class Solution:
 
  [力扣](https://leetcode-cn.com/problems/contains-duplicate/description/)/[题解](https://leetcode-cn.com/problems/contains-duplicate/solution/cun-zai-zhong-fu-de-yuan-su-yi-yi-ti-san-ihfa/)
 
-set() 函数创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。
+
+ [set() 函数](https://www.runoob.com/python/python-func-set.html/) 创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。
 
 ```python
 class Solution:
