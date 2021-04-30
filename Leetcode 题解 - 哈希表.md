@@ -64,7 +64,7 @@ set() 函数创建一个无序不重复元素集，可进行关系测试，删�
 ```python
 class Solution:
 	def containsDuplicate(self, nums: List[int]) -> bool:
-		 return len(nums) != len(set(nums))
+	    return len(nums) != len(set(nums))
 
 ```
 
