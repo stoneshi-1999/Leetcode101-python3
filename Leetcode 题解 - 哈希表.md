@@ -67,10 +67,15 @@ class Solution:
     def findRepeatNumber(self, nums: [int]) -> int:
         dic = set()
         for num in nums:
-            if num in dic: return num
-            dic.add(num)
+            if num in dic: 
+            return num#在dic中了，则输出来
+            dic.add(num)#如果num不在dic中则加入dic
         return -1
 ```
+复杂度分析：
+时间复杂度 O(N) ： 遍历数组使用 O(N) ，HashSet 添加与查找元素皆为 O(1) 。
+空间复杂度 O(N) ： HashSet 占用 O(N) 大小的额外空间。
+
 
 ## 4. 最长和谐序列
 
