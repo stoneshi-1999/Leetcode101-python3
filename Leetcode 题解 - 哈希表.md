@@ -49,7 +49,7 @@ class Solution:
         for i, num in enumerate(nums):
             if target - num in hashtable:
                 return [hashtable[target - num], i]
-            hashtable[nums[i]] = i
+            hashtable[nums[i]] = i#最后输出的是下标，所以哈希表里键key为数值，值value为下标
         return []
 ```
 
