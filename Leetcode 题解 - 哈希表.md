@@ -40,6 +40,8 @@ dict() 函数用于创建一个字典。
 >dict([('one', 1), ('two', 2), ('three', 3)])    # 可迭代对象方式来构造字典
 >输出：{'three': 3, 'two': 2, 'one': 1}
 
+enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
