@@ -48,7 +48,7 @@ class Solution:
         hashtable = dict()
         for i, num in enumerate(nums):
             if target - num in hashtable:#target - num的计算结果在哈希表里的键key中，所以键key为数值，值value为下标
-                return [hashtable[target - num], i]#找出target - num的下标和num对应的下标
+                return [hashtable[target - num], i]#找出target - num的下标和num对应的下标（注意num和nums的区别！）
             hashtable[nums[i]] = i#最后输出的是下标，所以哈希表里键key为数值，值value为下标
         return []
 ```
