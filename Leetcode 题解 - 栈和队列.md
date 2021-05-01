@@ -114,9 +114,9 @@ class MyStack:
         """
         Push element x onto stack.
         """
-        n = len(self.queue)#把之前的n个元素全部拿出再放回
+        n = len(self.queue)#把加入x之前有n个元素
         self.queue.append(x)
-        for _ in range(n):
+        for _ in range(n):#把加入x之前的n个元素全部拿出再放回，保证x在队列最前，即先进先出
             self.queue.append(self.queue.popleft())
 
 
