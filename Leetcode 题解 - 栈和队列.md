@@ -131,7 +131,7 @@ class MyStack:
         """
         Get the top element.
         """
-        return self.queue[0]
+        return self.queue[0]#队列最前最先出，最先出即为栈顶
 
 
     def empty(self) -> bool:
