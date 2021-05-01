@@ -159,7 +159,7 @@ class MinStack:
 
     def push(self, x: int) -> None:
         self.stack.append(x)
-        self.min_stack.append(min(x, self.min_stack[-1]))
+        self.min_stack.append(min(x, self.min_stack[-1]))#前面记得加self
 
     def pop(self) -> None:
         self.stack.pop()
