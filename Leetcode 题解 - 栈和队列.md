@@ -71,7 +71,7 @@ class MyStack:
         """
         self.queue2.append(x)
         while self.queue1:
-            self.queue2.append(self.queue1.popleft())
+            self.queue2.append(self.queue1.popleft())把之前的所有元素放的新元素的队后，让新元素在队首（先入先出）
         self.queue1, self.queue2 = self.queue2, self.queue1
 
 
