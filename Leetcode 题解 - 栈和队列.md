@@ -114,7 +114,7 @@ class MyStack:
         """
         Push element x onto stack.
         """
-        n = len(self.queue)
+        n = len(self.queue)#把之前的n个元素全部拿出再放回
         self.queue.append(x)
         for _ in range(n):
             self.queue.append(self.queue.popleft())
