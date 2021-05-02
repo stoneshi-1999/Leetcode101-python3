@@ -139,6 +139,8 @@ The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
 
 要求以 O(N) 的时间复杂度求解。
 
+ +=, 加法赋值运算符, c += a 等效于c = c + a 
+
 ```python
 class Solution:
     def longestConsecutive(self, nums):
