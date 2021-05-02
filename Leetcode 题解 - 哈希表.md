@@ -147,12 +147,12 @@ class Solution:
 
         for num in num_set:
             if num - 1 not in num_set:#保证开始计算序列长度时，是连续序列的起点（没有比num小1的值）
-                current_num = num
-                current_streak = 1
+                current_num = num#满足条件时，起点即为num
+                current_streak = 1#此时的序列长为1
 
                 while current_num + 1 in num_set:
-                    current_num += 1
-                    current_streak += 1
+                    current_num += 1#序列数+1（因为是连续序列）
+                    current_streak += 1#序列长度+1
 
                 longest_streak = max(longest_streak, current_streak)
 
