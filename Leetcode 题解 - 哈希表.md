@@ -143,10 +143,10 @@ The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
 class Solution:
     def longestConsecutive(self, nums):
         longest_streak = 0
-        num_set = set(nums)
+        num_set = set(nums)#去掉重复的元素
 
         for num in num_set:
-            if num - 1 not in num_set:
+            if num - 1 not in num_set:#保证开始计算序列长度时，是连续序列的起点（没有比num小1的值）
                 current_num = num
                 current_streak = 1
 
