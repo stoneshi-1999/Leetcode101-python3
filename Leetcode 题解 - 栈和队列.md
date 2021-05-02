@@ -266,7 +266,7 @@ class Solution:
         for i in range(n * 2 - 1):
             value = nums[i % n]
             while stk and  value > nums[stk[-1]]:
-                res[stk.pop()] = nums[i % n]
+                res[stk.pop()] = value
             stk.append(i % n)
         
         return res
