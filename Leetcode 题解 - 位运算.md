@@ -505,11 +505,8 @@ public int[] countBits(int num) {
 
 ## 14. 数组中数字出现的次数
 
-338\. Counting Bits (Medium)
+剑指 Offer 56 - I. 数组中数字出现的次数   [力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
 
-[力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
-
-剑指 Offer 56 - I. 数组中数字出现的次数
 
 ```python
 class Solution:
@@ -530,11 +527,9 @@ class Solution:
 
 ## 15. 数组中数字出现的次数II
 
-338\. Counting Bits (Medium)
+剑指 Offer 56 - II. 数组中数字出现的次数 II  [力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
 
-[力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
 
-剑指 Offer 56 - II. 数组中数字出现的次数 II
 
 ```python
 class Solution:
