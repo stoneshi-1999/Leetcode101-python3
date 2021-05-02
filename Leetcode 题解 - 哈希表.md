@@ -106,20 +106,24 @@ Explanation: The longest harmonious subsequence is [3,2,2,2,3].
 
 和谐序列中最大数和最小数之差正好为 1，应该注意的是序列的元素不一定是数组的连续元素。
 
-```java
-public int findLHS(int[] nums) {
-    Map<Integer, Integer> countForNum = new HashMap<>();
-    for (int num : nums) {
-        countForNum.put(num, countForNum.getOrDefault(num, 0) + 1);
-    }
-    int longest = 0;
-    for (int num : countForNum.keySet()) {
-        if (countForNum.containsKey(num + 1)) {
-            longest = Math.max(longest, countForNum.get(num + 1) + countForNum.get(num));
-        }
-    }
-    return longest;
-}
+字典 get() 函数返回指定键的值。
+语法：
+dict.get(key, default=None)
+参数：
+key -- 字典中要查找的键。
+default -- 如果指定的键不存在时，返回该默认值。
+
+```python
+class Solution:
+    def findLHS(self, nums: List[int]) -> int:
+        dicts={}
+        for i in nums:
+            dicts[i]=dicts.get(i,0)+1
+        res=0
+        for i in dicts:
+            if i+1 in dicts:
+                res=max(res,dicts[i]+dicts[i+1])
+        return res
 ```
 
 ## 5. 最长连续序列
