@@ -15,6 +15,8 @@
     * [11. 实现整数的加法](#11-实现整数的加法)
     * [12. 字符串数组最大乘积](#12-字符串数组最大乘积)
     * [13. 统计从 0 \~ n 每个数的二进制表示中 1 的个数](#13-统计从-0-\~-n-每个数的二进制表示中-1-的个数)
+    * [14. 数组中数字出现的次数](#14-数组中数字出现的次数)
+    * [15. 数组中数字出现的次数II](#15-数组中数字出现的次数II)
 <!-- GFM-TOC -->
 
 
@@ -501,3 +503,45 @@ public int[] countBits(int num) {
 }
 ```
 
+## 14. 数组中数字出现的次数
+
+338\. Counting Bits (Medium)
+
+[力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+
+剑指 Offer 56 - I. 数组中数字出现的次数
+
+```python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res = 0
+        for i in range(32):
+            cnt = 0  # 记录当前 bit 有多少个1
+            bit = 1 << i  # 记录当前要操作的 bit
+            for num in nums:
+                if num & bit != 0:
+                    cnt += 1
+            if cnt % 3 != 0:
+                # 不等于0说明唯一出现的数字在这个 bit 上是1
+                res |= bit
+
+        return res - 2 ** 32 if res > 2 ** 31 - 1 else res
+```      
+
+## 15. 数组中数字出现的次数II
+
+338\. Counting Bits (Medium)
+
+[力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+
+剑指 Offer 56 - II. 数组中数字出现的次数 II
+
+```python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        ones, twos = 0, 0
+        for num in nums:
+            ones = ones ^ num & ~twos
+            twos = twos ^ num & ~ones
+        return ones
+```
