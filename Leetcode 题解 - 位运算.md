@@ -21,6 +21,7 @@
 
 
 ## 0. 原理
+![image](https://user-images.githubusercontent.com/70521393/116840048-17dc6380-ac07-11eb-96e0-dc4b9fc449f7.png)
 
 **基本原理** 
 
