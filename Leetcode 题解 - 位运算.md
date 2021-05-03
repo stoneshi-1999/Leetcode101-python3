@@ -493,24 +493,30 @@ public int[] countBits(int num) {
 
 剑指 Offer 56 - I. 数组中数字出现的次数   [力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
 
+找出数组中两个没有重复的数字
+
 reduce() 函数会对参数序列中元素进行累积。
 函数将一个数据集合（链表，元组等）中的所有数据进行下列操作：用传给 reduce 中的函数 function（有两个参数）先对集合中的第 1、2 个元素进行操作，得到的结果再与第三个数据用 function 函数运算，最后得到一个结果。
 
 如果a、b两个值不相同，则异或结果为1。如果a、b两个值相同，异或结果为0。
+把a和b分到两组，每组里其它的数都是出现两次的。
+
+如何分组？随便在**异或结果**中取一位，这位为0的放一组，为1的放另外一组。
+因为a、b两个数在**异或结果**中为1的那位上必然不同。
 
 ```python
 class Solution:
     def singleNumbers(self, nums: List[int]) -> List[int]:
-        ret = functools.reduce(lambda x, y: x ^ y, nums)
+        ret = functools.reduce(lambda x, y: x ^ y, nums)#因为重复的数字异或为0，所以全部异或的结果就是两个只出现过一次的数字的异或结果
         div = 1
-        while div & ret == 0:
-            div <<= 1
+        while div & ret == 0:#python3中 位与& 优先级高于 等于== ，先div&ret，再判断是否等于0
+            div <<= 1#找到异或结果中为1的那一位
         a, b = 0, 0
         for n in nums:
             if n & div:
-                a ^= n
+                a ^= n#该位为1的为a组，全部异或在一起
             else:
-                b ^= n
+                b ^= n#该位为0的为b组，全部异或在一起
         return [a, b]
 ```      
 
