@@ -507,22 +507,23 @@ public int[] countBits(int num) {
 
 剑指 Offer 56 - I. 数组中数字出现的次数   [力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
 
+reduce() 函数会对参数序列中元素进行累积。
+函数将一个数据集合（链表，元组等）中的所有数据进行下列操作：用传给 reduce 中的函数 function（有两个参数）先对集合中的第 1、2 个元素进行操作，得到的结果再与第三个数据用 function 函数运算，最后得到一个结果。
 
 ```python
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-        res = 0
-        for i in range(32):
-            cnt = 0  # 记录当前 bit 有多少个1
-            bit = 1 << i  # 记录当前要操作的 bit
-            for num in nums:
-                if num & bit != 0:
-                    cnt += 1
-            if cnt % 3 != 0:
-                # 不等于0说明唯一出现的数字在这个 bit 上是1
-                res |= bit
-
-        return res - 2 ** 32 if res > 2 ** 31 - 1 else res
+    def singleNumbers(self, nums: List[int]) -> List[int]:
+        ret = functools.reduce(lambda x, y: x ^ y, nums)
+        div = 1
+        while div & ret == 0:
+            div <<= 1
+        a, b = 0, 0
+        for n in nums:
+            if n & div:
+                a ^= n
+            else:
+                b ^= n
+        return [a, b]
 ```      
 
 ## 15. 数组中数字出现的次数II
