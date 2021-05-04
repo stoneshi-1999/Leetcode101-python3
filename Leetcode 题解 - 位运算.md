@@ -524,7 +524,7 @@ class Solution:
 
 剑指 Offer 56 - II. 数组中数字出现的次数 II  [力扣](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
 
-
+解法：https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/
 
 ```python
 class Solution:
