@@ -537,10 +537,14 @@ class Solution:
                 counts[j] += num & 1#每一位进行计数
                 num >>= 1
         res, m = 0, 3
+        #利用 左移操作 和 或运算，将 counts 数组中各二进位的值恢复到数字 res 上（循环区间是 i∈[0,31] ）。
         for i in range(32):
             res <<= 1
             res |= counts[31 - i] % m#每一位对m求余数
-        return res if counts[31] % m == 0 else ~(res ^ 0xffffffff)
+        if counts[31] % m == 0：    
+            return res  
+        else：
+            return ~(res ^ 0xffffffff)
 ```
 
 由于 Python 的存储负数的特殊性，需要先将 0 - 32 位取反（即 res ^ 0xffffffff ），再将所有位取反（即 ~ ）。  
