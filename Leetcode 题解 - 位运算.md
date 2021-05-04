@@ -526,12 +526,27 @@ class Solution:
 
 解法：https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/
 
+方法二：遍历统计
+
 ```python
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        ones, twos = 0, 0
+        counts = [0] * 32
         for num in nums:
-            ones = ones ^ num & ~twos
-            twos = twos ^ num & ~ones
-        return ones
+            for j in range(32):
+                counts[j] += num & 1#每一位进行计数
+                num >>= 1
+        res, m = 0, 3
+        for i in range(32):
+            res <<= 1
+            res |= counts[31 - i] % m#每一位对m求余数
+        return res if counts[31] % m == 0 else ~(res ^ 0xffffffff)
 ```
+
+由于 Python 的存储负数的特殊性，需要先将 0 - 32 位取反（即 res ^ 0xffffffff ），再将所有位取反（即 ~ ）。
+两个组合操作实质上是将数字 32 以上位取反， 0 - 32 位不变。
+
+
+复杂度分析：
+时间复杂度 O(N) ： 其中 N 位数组 nums 的长度；遍历数组占用 O(N) ，每轮中的常数个位运算操作占用 O(1) 。
+空间复杂度 O(1) ： 数组 counts 长度恒为 32 ，占用常数大小的额外空间。
