@@ -540,7 +540,7 @@ class Solution:
         #利用 左移操作 和 或运算，将 counts 数组中各二进位的值恢复到数字 res 上（循环区间是 i∈[0,31] ）。
         for i in range(32):
             res <<= 1
-            res |= counts[31 - i] % m#每一位对m求余数
+            res |= counts[31 - i] % m#每一位对m求余数,i=0时，counts[31]即在最左边（最高位）的哪一位
         if counts[31] % m == 0：    
             return res  
         else：
