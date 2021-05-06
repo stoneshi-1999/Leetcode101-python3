@@ -8,6 +8,7 @@
     * [4. 用栈实现括号匹配](#4-用栈实现括号匹配)
     * [5. 数组中元素与下一个比它大的元素之间的距离](#5-数组中元素与下一个比它大的元素之间的距离)
     * [6. 循环数组中比当前元素大的下一个元素](#6-循环数组中比当前元素大的下一个元素)
+    * [7. 基本计算器 II](#7-基本计算器 II)
 <!-- GFM-TOC -->
 
 
@@ -271,4 +272,39 @@ class Solution:
         
         return res
 
+```
+
+## 7. 基本计算器 II
+
+ 227\. Basic Calculator II(Medium)
+给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
+
+整数除法仅保留整数部分。
+ [力扣](https://leetcode-cn.com/problems/basic-calculator-ii/)
+ 
+ ```python
+ class Solution:
+    def calculate(self, s):
+        stack = []
+        pre_op = '+'
+        num = 0
+        for i, each in enumerate(s):
+            if each.isdigit():
+                num = 10 * num + int(each)
+            if i == len(s) - 1 or each in '+-*/':
+                if pre_op == '+':
+                    stack.append(num)
+                elif pre_op == '-':
+                    stack.append(-num)
+                elif pre_op == '*':
+                    stack.append(stack.pop() * num)
+                elif pre_op == '/':
+                    top = stack.pop()
+                    if top < 0:
+                        stack.append(int(top / num))
+                    else:
+                        stack.append(top // num)
+                pre_op = each
+                num = 0
+        return sum(stack)
 ```
