@@ -320,7 +320,7 @@ enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或�
                 elif pre_op == '/':
                     top = stack.pop()
                     stack.append(int(top / num))#如果是除号，取栈顶计算，将结果入栈
-                pre_op = each
-                num = 0
+                pre_op = each#每一步更新pre_op
+                num = 0#每次将num清0
         return sum(stack)
 ```
