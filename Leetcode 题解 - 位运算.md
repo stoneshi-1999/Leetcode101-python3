@@ -526,6 +526,26 @@ class Solution:
 
 解法：https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/
 
+
+方法一：字典
+
+用字典存数和数出现的次数，然后交换字典键值，输出次数为1的。
+
+```python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        dic = {}
+        for num in nums:
+            if num not in dic:
+                dic[num] = 1
+            else:
+                dic[num] += 1
+        for key, value in dic.items():#以列表返回可遍历的(键, 值) 元组数组
+            if value == 1:
+                return key
+```
+                
+
 方法二：遍历统计
 
 ```python
