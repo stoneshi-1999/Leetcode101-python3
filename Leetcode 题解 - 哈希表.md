@@ -28,19 +28,19 @@
 
 dict() 函数用于创建一个字典。
 
->dict()# 创建空字典
+>dict()# 创建空字典   
 >输出：{}
 
-> dict(a='a', b='b', t='t')# 传入关键字
+> dict(a='a', b='b', t='t')# 传入关键字  
 > 输出：{'a': 'a', 'b': 'b', 't': 't'}
 
->dict(zip(['one', 'two', 'three'], [1, 2, 3]))   # 映射函数方式来构造字典
+>dict(zip(['one', 'two', 'three'], [1, 2, 3]))   # 映射函数方式来构造字典  
 >输出：{'three': 3, 'two': 2, 'one': 1} 
 
->dict([('one', 1), ('two', 2), ('three', 3)])    # 可迭代对象方式来构造字典
+>dict([('one', 1), ('two', 2), ('three', 3)])    # 可迭代对象方式来构造字典  
 >输出：{'three': 3, 'two': 2, 'one': 1}
 
-[enumerate() 函数](https://www.runoob.com/python/python-func-enumerate.html)用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+[enumerate() 函数](https://www.runoob.com/python/python-func-enumerate.html)用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出**数据下标和数据**，一般用在 for 循环当中。
 
 ```python
 class Solution:
