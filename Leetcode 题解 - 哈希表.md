@@ -83,7 +83,7 @@ class Solution:
         dic = set()
         for num in nums:
             if num in dic: 
-            return num#在dic中了，则输出来
+            	return num#在dic中了，则输出来
             dic.add(num)#如果num不在dic中则加入dic
         return -1
 ```
