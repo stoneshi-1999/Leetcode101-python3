@@ -535,7 +535,7 @@ class Solution:
         for num in nums:
             for j in range(32):
                 counts[j] += num & 1#每一位进行计数
-                num >>= 1
+                num >>= 1#第一位是在最左边，所以从左向右移位（右移！）
         res, m = 0, 3
         #利用 左移操作 和 或运算，将 counts 数组中各二进位的值恢复到数字 res 上（循环区间是 i∈[0,31] ）。
         for i in range(32):
