@@ -537,7 +537,7 @@ class Solution:
         dic = {}
         for num in nums:
             if num not in dic:
-                dic[num] = 1
+                dic[num] = 1#一开始没有，所以赋值1（等于0+1）
             else:
                 dic[num] += 1
         for key, value in dic.items():#以列表返回可遍历的(键, 值) 元组数组
