@@ -293,10 +293,14 @@ class Solution:
 操作情况： 
 运算符②，决定了现在的操作： 
 
-如果 运算符② 为 +， - ：如果是+，是把数字③入栈；如果 -，是把 数字③取反 入栈。 
+如果 运算符② 为 +， - ：如果是+，是把数字③入栈；如果 -，是把 数字③取反再入栈。 
 如果 运算符② 为 *，/ ，则需要计算 数字① 运算符② 数字③，然后把结果 入栈。 
 这样遍历一次后，优先把所有的 *，/ 都计算出来，而且与需要做加减运算的数字一起，全都都放到了栈中，对栈求和，即为最终的结果。 
 
+enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出**数据下标和数据**，一般用在 for 循环当中。
+ 
+//： 取整除 - 向下取接近商的整数，-9//2=-5
+但题目要求保留整数部分，所以直接用浮点除再取整数
  
  ```python
  class Solution:
@@ -306,20 +310,16 @@ class Solution:
         num = 0
         for i, each in enumerate(s):
             if each.isdigit():
-                num = 10 * num + int(each)
-            if i == len(s) - 1 or each in '+-*/':
-                if pre_op == '+':
-                    stack.append(num)
+                num = 10 * num + int(each)#保证能够识别多位数（两位及两位以上的数字）
+            if i == len(s) - 1 or each in '+-*/':#i循环到最后或者循环到运算符
+                    stack.append(num)#如果是加号直接入栈
                 elif pre_op == '-':
-                    stack.append(-num)
+                    stack.append(-num)#如果是负号取反入栈
                 elif pre_op == '*':
-                    stack.append(stack.pop() * num)
+                    stack.append(stack.pop() * num)#如果是乘号，取栈顶计算，将结果入栈
                 elif pre_op == '/':
                     top = stack.pop()
-                    if top < 0:
-                        stack.append(int(top / num))
-                    else:
-                        stack.append(top // num)
+                    stack.append(int(top / num))#如果是除号，取栈顶计算，将结果入栈
                 pre_op = each
                 num = 0
         return sum(stack)
