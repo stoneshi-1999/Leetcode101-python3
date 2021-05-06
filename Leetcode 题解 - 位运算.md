@@ -495,6 +495,7 @@ public int[] countBits(int num) {
 
 找出数组中两个没有重复的数字
 
+方法一：位运算
 reduce() 函数会对参数序列中元素进行累积。
 函数将一个数据集合（链表，元组等）中的所有数据进行下列操作：用传给 reduce 中的函数 function（有两个参数）先对集合中的第 1、2 个元素进行操作，得到的结果再与第三个数据用 function 函数运算，最后得到一个结果。
 
@@ -518,7 +519,24 @@ class Solution:
             else:
                 b ^= n#该位为0的为b组，全部异或在一起
         return [a, b]
-```      
+```
+
+方法二：用字典
+```python
+class Solution:
+    def singleNumbers(self, nums: List[int]) -> List[int]:
+        dic = {}
+        for num in nums:
+            if num not in dic:
+                dic[num] = 1
+            else:
+                dic[num] += 1
+        res = []
+        for key,val in dic.items():
+            if val == 1:
+                res.append(key)
+        return res
+```
 
 ## 15. 数组中数字出现的次数II
 
