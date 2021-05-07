@@ -135,7 +135,7 @@ class Solution:
 
 ```python
 class Solution:
-    def mergeTwoLists(self, l1, l2):
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         if l1 is None:
             return l2
         elif l2 is None:
