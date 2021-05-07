@@ -89,17 +89,19 @@ class Solution:
 
 递归
 
-```java
-public ListNode reverseList(ListNode head) {
-    if (head == null || head.next == null) {
-        return head;
-    }
-    ListNode next = head.next;
-    ListNode newHead = reverseList(next);
-    next.next = head;
-    head.next = null;
-    return newHead;
-}
+![image](https://user-images.githubusercontent.com/70521393/117388602-a1e53e80-af1d-11eb-9a8f-ed76392f8798.png)
+
+```python
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        pre = None
+        cur = head
+        while cur:
+            temp = cur.next   # 先把原来cur.next位置存起来
+            cur.next = pre
+            pre = cur
+            cur = temp
+        return pre
 ```
 
 头插法
