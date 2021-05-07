@@ -197,13 +197,24 @@ Given 1->1->2, return 1->2.
 Given 1->1->2->3->3, return 1->2->3.
 ```
 
-```java
-public ListNode deleteDuplicates(ListNode head) {
-    if (head == null || head.next == null) return head;
-    head.next = deleteDuplicates(head.next);
-    return head.val == head.next.val ? head.next : head;
-}
+```python
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        if not head:
+            return head
+
+        cur = head
+        while cur.next:
+            if cur.val == cur.next.val:
+                cur.next = cur.next.next
+            else:
+                cur = cur.next
+
+        return head
 ```
+时间复杂度：O(n)，其中 n 是链表的长度。
+
+空间复杂度：O(1)。
 
 ##  5. 删除链表的倒数第 n 个节点
 
