@@ -156,7 +156,7 @@ class Solution:
                 current_num = num#满足条件时，起点即为num
                 current_streak = 1#此时的序列长为1
 
-                while current_num + 1 in num_set:
+                while current_num + 1 in num_set:#注意这里是CURRENT_NUM+1!
                     current_num += 1#序列数+1（因为是连续序列）
                     current_streak += 1#序列长度+1
 
