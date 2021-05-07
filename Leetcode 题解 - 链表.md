@@ -439,7 +439,7 @@ public ListNode oddEvenList(ListNode head) {
 
 ##  11. 分隔链表crn
 
-.86\. Partition List(Medium)
+86\. Partition List(Medium)
 
 [力扣](https://leetcode-cn.com/problems/partition-list/)
 
