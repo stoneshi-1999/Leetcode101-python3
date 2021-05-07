@@ -97,8 +97,8 @@ class Solution:
         pre = None
         cur = head
         while cur:
-            temp = cur.next   # 先把原来cur.next位置存起来
-            cur.next = pre
+            temp = cur.next# 先把原来cur.next位置存起来
+            cur.next = pre#注意顺序，每个赋值（右边的）后的变成下一个被赋值的（左边的）
             pre = cur
             cur = temp
         return pre
