@@ -106,7 +106,7 @@ class Solution:
 时间复杂度：O(n)
 空间复杂度：O(1)
 
-递归
+递归  [讲解](https://leetcode-cn.com/problems/reverse-linked-list/solution/shi-pin-jiang-jie-die-dai-he-di-gui-hen-hswxy/)
 
 ```python3
 class Solution:
