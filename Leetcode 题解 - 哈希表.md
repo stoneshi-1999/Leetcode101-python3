@@ -120,13 +120,13 @@ default -- 如果指定的键不存在时，返回该默认值。
 ```python
 class Solution:
     def findLHS(self, nums: List[int]) -> int:
-        dicts={}
-        for i in nums:
-            dicts[i]=dicts.get(i,0)+1
+        dicts={}#用键key存num数，用值value存num数的出现次数。
+        for num in nums:
+            dicts[num]=dicts.get(num,0)+1#一开始dicts为空，没有元素（没有i），所以返回值为0，需要+1！
         res=0
-        for i in dicts:
-            if i+1 in dicts:
-                res=max(res,dicts[i]+dicts[i+1])
+        for num in dicts:
+            if num+1 in dicts:
+                res=max(res,dicts[num]+dicts[num+1])
         return res
 ```
 
