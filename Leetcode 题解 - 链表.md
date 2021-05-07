@@ -113,10 +113,10 @@ class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         if head is None or head.next is None:
             return head
-        node = self.reverseList(head.next)
-        head.next.next = head
-        # 防止出现环
-        head.next = None
+        node = self.reverseList(head.next)#递归调用的“递”，调用自己
+        #下面两步是递归调用的“归”
+        head.next.next = head#现在head的next的next变成head，反转
+        head.next = None#变成链表的结尾
         return node
 
 ```
