@@ -205,15 +205,14 @@ class Solution:
 
         cur = head
         while cur.next:
-            if cur.val == cur.next.val:
+            if cur.val == cur.next.val:#注意是值相等
                 cur.next = cur.next.next
             else:
                 cur = cur.next
 
         return head
 ```
-时间复杂度：O(n)，其中 n 是链表的长度。
-
+时间复杂度：O(n)，其中 n 是链表的长度。 
 空间复杂度：O(1)。
 
 ##  5. 删除链表的倒数第 n 个节点
