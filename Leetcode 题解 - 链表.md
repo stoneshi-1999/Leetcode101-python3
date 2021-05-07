@@ -87,7 +87,7 @@ class Solution:
 
 [Leetcode](https://leetcode.com/problems/reverse-linked-list/description/) / [力扣](https://leetcode-cn.com/problems/reverse-linked-list/description/)
 
-递归
+迭代
 
 ![image](https://user-images.githubusercontent.com/70521393/117388602-a1e53e80-af1d-11eb-9a8f-ed76392f8798.png)
 
@@ -103,21 +103,25 @@ class Solution:
             cur = temp
         return pre
 ```
+时间复杂度：O(n)
+空间复杂度：O(1)
 
-头插法
+递归
 
-```java
-public ListNode reverseList(ListNode head) {
-    ListNode newHead = new ListNode(-1);
-    while (head != null) {
-        ListNode next = head.next;
-        head.next = newHead.next;
-        newHead.next = head;
-        head = next;
-    }
-    return newHead.next;
-}
+```python3
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        node = self.reverseList(head.next)
+        head.next.next = head
+        # 防止出现环
+        head.next = None
+        return node
+
 ```
+时间复杂度：O(n)
+空间复杂度：O(n)
 
 ##  3. 归并两个有序的链表
 
