@@ -59,6 +59,22 @@ class Solution:
             b = b.next if b else headA
         return a
 ```
+等价于
+```
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        a,b = headA,headB
+        while a != b:
+            if a :
+                a = a.next 
+            else:
+                a = headB
+            if b :
+                b = b.next
+            else:
+                b = headA
+        return a 
+```
 
 如果只是判断是否存在交点，那么就是另一个问题，即 [编程之美 3.6]() 的问题。有两种解法：
 
