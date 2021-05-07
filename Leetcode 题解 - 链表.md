@@ -60,7 +60,7 @@ class Solution:
         return a
 ```
 等价于
-```
+```python
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         a,b = headA,headB
