@@ -227,21 +227,45 @@ Given linked list: 1->2->3->4->5, and n = 2.
 After removing the second node from the end, the linked list becomes 1->2->3->5.
 ```
 
-```java
-public ListNode removeNthFromEnd(ListNode head, int n) {
-    ListNode fast = head;
-    while (n-- > 0) {
-        fast = fast.next;
-    }
-    if (fast == null) return head.next;
-    ListNode slow = head;
-    while (fast.next != null) {
-        fast = fast.next;
-        slow = slow.next;
-    }
-    slow.next = slow.next.next;
-    return head;
-}
+（暴力法）求链表长度：
+
+```python3
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        def getLength(head: ListNode) -> int:#获取链表的长度
+            length = 0
+            while head:
+                length += 1
+                head = head.next
+            return length
+        
+        dummy = ListNode(0, head)#哑节点（随便
+        length = getLength(head)
+        cur = dummy
+        for i in range(1, length - n + 1):
+            cur = cur.next
+        cur.next = cur.next.next
+        return dummy.next
+ ```
+ 
+ 快慢指针：
+ 
+ ```
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0, head)
+        first = head
+        second = dummy
+        for i in range(n):
+            first = first.next
+
+        while first:
+            first = first.next
+            second = second.next
+        
+        second.next = second.next.next
+        return dummy.next
+
 ```
 
 ##  6. 交换链表中的相邻结点
