@@ -278,24 +278,26 @@ class Solution:
 Given 1->2->3->4, you should return the list as 2->1->4->3.
 ```
 
-题目要求：不能修改结点的 val 值，O(1) 空间复杂度。
+题目要求：不能修改结点的 val 值，O(1) 空间复杂度。->所以用迭代，不用递归
 
-```java
-public ListNode swapPairs(ListNode head) {
-    ListNode node = new ListNode(-1);
-    node.next = head;
-    ListNode pre = node;
-    while (pre.next != null && pre.next.next != null) {
-        ListNode l1 = pre.next, l2 = pre.next.next;
-        ListNode next = l2.next;
-        l1.next = next;
-        l2.next = l1;
-        pre.next = l2;
-
-        pre = l1;
-    }
-    return node.next;
-}
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        dummy = ListNode(0,head)
+        temp = dummy
+        while temp.next and temp.next.next:#temp 的后面没有节点或者只有一个节点，则没有更多的节点需要交换，因此结束交换
+            node1 = temp.next
+            node2 = node1.next
+            temp.next = node2
+            node1.next = node2.next
+            node2.next = node1
+            temp = node1
+        return dummy.next
 ```
 
 ##  7. 链表求和
