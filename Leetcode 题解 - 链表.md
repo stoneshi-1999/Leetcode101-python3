@@ -250,7 +250,7 @@ class Solution:
  
  快慢指针：
  
- ```
+ ```PYTHON3
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         dummy = ListNode(0, head)
