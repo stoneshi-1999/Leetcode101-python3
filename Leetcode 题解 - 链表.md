@@ -318,25 +318,25 @@ Output: 7 -> 8 -> 0 -> 7
 
 ### 头插法：
 
-原状态如下：
-dummy -> dummy.next
-new_node -> new_node.next
+原状态如下： 
+dummy -> dummy.next  
+new_node -> new_node.next  
 
-1:将cur当前值赋值给new_node节点
-    new_node = ListNode(cur) 
+1:将cur当前值赋值给new_node节点   
+    new_node = ListNode(cur)  
 
-2：将new_node的下一个节点变为dummy.next
-    new_node.next = dummy.next
-状态更新为：
-dummy -> dummy.next
-**new_node** -> dummy.next
+2：将new_node的下一个节点变为dummy.next  
+    new_node.next = dummy.next  
+状态更新：  
+dummy -> dummy.next  
+**new_node** -> dummy.next  
 
-3：将dummy的下一个节点变为new_node
-    dummy.next = new_node
-状态更新为：
-**dummy** -> new_node -> dummy.next
+3：将dummy的下一个节点变为new_node  
+    dummy.next = new_node  
+状态更新： 
+**dummy** -> new_node -> dummy.next  
 
-这样new_node就插入到头（dummy）的后面啦
+这样new_node就插入到头（dummy）的后面啦  
 
 ### 代码
 
