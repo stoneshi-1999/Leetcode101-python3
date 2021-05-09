@@ -388,45 +388,19 @@ class Solution:
 
 切成两半，把后半段反转，然后比较两半是否相等。
 
-```java
-public boolean isPalindrome(ListNode head) {
-    if (head == null || head.next == null) return true;
-    ListNode slow = head, fast = head.next;
-    while (fast != null && fast.next != null) {
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-    if (fast != null) slow = slow.next;  // 偶数节点，让 slow 指向下一个节点
-    cut(head, slow);                     // 切成两个链表
-    return isEqual(head, reverse(slow));
-}
-
-private void cut(ListNode head, ListNode cutNode) {
-    while (head.next != cutNode) {
-        head = head.next;
-    }
-    head.next = null;
-}
-
-private ListNode reverse(ListNode head) {
-    ListNode newHead = null;
-    while (head != null) {
-        ListNode nextNode = head.next;
-        head.next = newHead;
-        newHead = head;
-        head = nextNode;
-    }
-    return newHead;
-}
-
-private boolean isEqual(ListNode l1, ListNode l2) {
-    while (l1 != null && l2 != null) {
-        if (l1.val != l2.val) return false;
-        l1 = l1.next;
-        l2 = l2.next;
-    }
-    return true;
-}
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        val = []
+        while head:
+            val.append(head.val)
+            head = head.next
+        return val == val[::-1]
 ```
 
 ##  9. 分隔链表
@@ -445,31 +419,34 @@ The input has been split into consecutive parts with size difference at most 1, 
 
 题目描述：把链表分隔成 k 部分，每部分的长度都应该尽可能相同，排在前面的长度应该大于等于后面的。
 
-```java
-public ListNode[] splitListToParts(ListNode root, int k) {
-    int N = 0;
-    ListNode cur = root;
-    while (cur != null) {
-        N++;
-        cur = cur.next;
-    }
-    int mod = N % k;
-    int size = N / k;
-    ListNode[] ret = new ListNode[k];
-    cur = root;
-    for (int i = 0; cur != null && i < k; i++) {
-        ret[i] = cur;
-        int curSize = size + (mod-- > 0 ? 1 : 0);
-        for (int j = 0; j < curSize - 1; j++) {
-            cur = cur.next;
-        }
-        ListNode next = cur.next;
-        cur.next = null;
-        cur = next;
-    }
-    return ret;
-}
+解题思路： 
+如果链表有 N 个结点，则分隔的链表中每个部分中都有 N/k 个结点，且前 N%k 部分有一个额外的结点。我们可以用一个简单的循环来计算 N。 
+
+我们知道每个部分的大小。直接拆分原链表，并根据需要返回指向原始链表中节点的指针列表。 
+
+```python3
+class Solution(object):
+    def splitListToParts(self, root, k):
+        cur = root
+        for N in xrange(1001):
+            if not cur: break
+            cur = cur.next
+        width, remainder = divmod(N, k)#分隔的链表中每个部分中都有 N//k 个结点(width)，且前 N%k 部分有一个额外的结点(remainder)
+
+        ans = []
+        cur = root
+        for i in xrange(k):
+            head = cur
+            for j in xrange(width + (i < remainder) - 1):
+                if cur: cur = cur.next
+            if cur:
+                cur.next, cur = None, cur.next
+            ans.append(head)
+        return ans
 ```
+
+时间复杂度：O(N + k)。N 指的是所给链表的结点数，若 k 很大，则还需要添加许多空列表。
+空间复杂度：O(k)，存储答案时所需的额外空格。
 
 ##  10. 链表元素按奇偶聚集
 
