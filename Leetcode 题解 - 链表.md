@@ -316,22 +316,22 @@ Output: 7 -> 8 -> 0 -> 7
 ### 解题思路
 链表中数位的顺序与我们做加法的顺序是相反的，为了逆序处理所有数位，我们可以使用栈：把所有数字压入栈中，再依次取出相加。计算过程中需要注意进位的情况。
 
-头插法：
+### 头插法：
 
 原状态如下：
 dummy -> dummy.next
 new_node -> new_node.next
 
-### 1:将cur当前值赋值给new_node节点
+1:将cur当前值赋值给new_node节点
     new_node = ListNode(cur) 
 
-### 2：将new_node的下一个节点变为dummy.next
+2：将new_node的下一个节点变为dummy.next
     new_node.next = dummy.next
 状态更新为：
 dummy -> dummy.next
 **new_node** -> dummy.next
 
-### 3：将dummy的下一个节点变为new_node
+3：将dummy的下一个节点变为new_node
     dummy.next = new_node
 状态更新为：
 **dummy** -> new_node -> dummy.next
