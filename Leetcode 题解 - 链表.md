@@ -313,32 +313,32 @@ Output: 7 -> 8 -> 0 -> 7
 
 题目要求：不能修改原始链表。
 
-```java
-public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-    Stack<Integer> l1Stack = buildStack(l1);
-    Stack<Integer> l2Stack = buildStack(l2);
-    ListNode head = new ListNode(-1);
-    int carry = 0;
-    while (!l1Stack.isEmpty() || !l2Stack.isEmpty() || carry != 0) {
-        int x = l1Stack.isEmpty() ? 0 : l1Stack.pop();
-        int y = l2Stack.isEmpty() ? 0 : l2Stack.pop();
-        int sum = x + y + carry;
-        ListNode node = new ListNode(sum % 10);
-        node.next = head.next;
-        head.next = node;
-        carry = sum / 10;
-    }
-    return head.next;
-}
-
-private Stack<Integer> buildStack(ListNode l) {
-    Stack<Integer> stack = new Stack<>();
-    while (l != null) {
-        stack.push(l.val);
-        l = l.next;
-    }
-    return stack;
-}
+```python3
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        s1, s2 = [], []
+        while l1:
+            s1.append(l1.val)
+            l1 = l1.next
+        while l2:
+            s2.append(l2.val)
+            l2 = l2.next
+        ans = None
+        carry = 0
+        while s1 or s2 or carry != 0:
+            a = 0 if not s1 else s1.pop()
+            b = 0 if not s2 else s2.pop()
+            cur = a + b + carry
+            carry = cur // 10
+            cur %= 10
+            curnode = ListNode(cur)
+            curnode.next = ans
+            ans = curnode
+        return ans
+   
+class Solution:
+   def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+   
 ```
 
 ##  8. 回文链表
