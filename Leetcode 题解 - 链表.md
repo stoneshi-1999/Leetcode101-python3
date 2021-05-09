@@ -436,12 +436,13 @@ class Solution(object):
         ans = []
         cur = root
         for i in range(k):
-            head = write = ListNode(None)
+            dummy = ListNode(0)
+            sub = dummy
             for j in range(width + (i < remainder)):
-                write.next = write = ListNode(cur.val)
-                if cur: 
-                  cur = cur.next
-            ans.append(head.next)
+                sub.next = sub = ListNode(cur.val)
+                if cur:
+                    cur = cur.next
+            ans.append(dummy.next)
         return ans
 ```
 
