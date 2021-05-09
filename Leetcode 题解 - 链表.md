@@ -473,7 +473,7 @@ class Solution:
         if not head:return head
         odd = head
         even_head = even = head.next#偶节点头单独拿出来，因为要和奇节点链表的末端相连
-        while odd.next and even.next:
+        while odd.next and even.next:#？？？
             odd.next = odd.next.next
             even.next = even.next.next
             odd,even = odd.next,even.next
