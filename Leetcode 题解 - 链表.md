@@ -428,16 +428,16 @@ The input has been split into consecutive parts with size difference at most 1, 
 class Solution(object):
     def splitListToParts(self, root, k):
         cur = root
-        for N in xrange(1001):
+        for N in range(1001):
             if not cur: break
             cur = cur.next
         width, remainder = divmod(N, k)#分隔的链表中每个部分中都有 N//k 个结点(width)，且前 N%k 部分有一个额外的结点(remainder)
         
         ans = []
         cur = root
-        for i in xrange(k):
+        for i in range(k):
             head = write = ListNode(None)
-            for j in xrange(width + (i < remainder)):
+            for j in range(width + (i < remainder)):
                 write.next = write = ListNode(cur.val)
                 if cur: 
                   cur = cur.next
