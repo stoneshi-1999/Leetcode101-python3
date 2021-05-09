@@ -313,32 +313,69 @@ Output: 7 -> 8 -> 0 -> 7
 
 题目要求：不能修改原始链表。
 
+### 解题思路
+链表中数位的顺序与我们做加法的顺序是相反的，为了逆序处理所有数位，我们可以使用栈：把所有数字压入栈中，再依次取出相加。计算过程中需要注意进位的情况。
+
+头插法：
+
+原状态如下：
+dummy -> dummy.next
+new_node -> new_node.next
+
+### 1:将cur当前值赋值给new_node节点
+    new_node = ListNode(cur) 
+
+### 2：将new_node的下一个节点变为dummy.next
+    new_node.next = dummy.next
+状态更新为：
+dummy -> dummy.next
+**new_node** -> dummy.next
+
+### 3：将dummy的下一个节点变为new_node
+    dummy.next = new_node
+状态更新为：
+**dummy** -> new_node -> dummy.next
+
+这样new_node就插入到头（dummy）的后面啦
+
+### 代码
+
 ```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        s1, s2 = [], []
+        stack1,stack2 =[],[]
+        dummy = ListNode(-1)
+
         while l1:
-            s1.append(l1.val)
+            stack1.append(l1.val)
             l1 = l1.next
         while l2:
-            s2.append(l2.val)
+            stack2.append(l2.val)
             l2 = l2.next
-        ans = None
-        carry = 0
-        while s1 or s2 or carry != 0:
-            a = 0 if not s1 else s1.pop()
-            b = 0 if not s2 else s2.pop()
-            cur = a + b + carry
-            carry = cur // 10
-            cur %= 10
-            curnode = ListNode(cur)
-            curnode.next = ans
-            ans = curnode
-        return ans
-   
-class Solution:
-   def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-   
+
+        carry = 0#保存进位的值
+        while stack1 or stack2 or carry!=0:
+            tmp1,tmp2 = 0 , 0
+            if stack1:
+                tmp1 = stack1.pop()
+            if stack2:
+                tmp2 = stack2.pop()
+            cur = tmp1 + tmp2 + carry
+            carry = cur // 10#进到下一位的值
+            cur %= 10#当前值为除10的余数
+            #下面三步是头插法，保证头节点不变，在头节点后不断插入
+            new_node = ListNode(cur)#将当前值作为新节点的值
+            new_node.next = dummy.next
+            dummy.next = new_node
+        
+        return dummy.next
+        
+
 ```
 
 ##  8. 回文链表
