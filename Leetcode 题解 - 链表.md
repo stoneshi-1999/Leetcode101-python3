@@ -448,7 +448,7 @@ class Solution(object):
 ```
 
 时间复杂度：O(N + k)。N 指的是所给链表的结点数，若 k 很大，则还需要添加许多空列表。
-空间复杂度：O(k)，存储答案时所需的额外空格。
+空间复杂度：O(max(N,k))，存储答案时所需的额外空格。
 
 ##  10. 链表元素按奇偶聚集
 
@@ -462,21 +462,24 @@ Given 1->2->3->4->5->NULL,
 return 1->3->5->2->4->NULL.
 ```
 
-```java
-public ListNode oddEvenList(ListNode head) {
-    if (head == null) {
-        return head;
-    }
-    ListNode odd = head, even = head.next, evenHead = even;
-    while (even != null && even.next != null) {
-        odd.next = odd.next.next;
-        odd = odd.next;
-        even.next = even.next.next;
-        even = even.next;
-    }
-    odd.next = evenHead;
-    return head;
-}
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        if not head:return head
+        odd = head
+        even_head = even = head.next#偶节点头单独拿出来，因为要和奇节点链表的末端相连
+        while odd.next and even.next:
+            odd.next = odd.next.next
+            even.next = even.next.next
+            odd,even = odd.next,even.next
+        odd.next = even_head
+        return head
+
 ```
 
 ##  11. 分隔链表crn
