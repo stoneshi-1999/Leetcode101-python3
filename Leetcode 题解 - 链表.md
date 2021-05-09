@@ -429,7 +429,7 @@ class Solution(object):
     def splitListToParts(self, root, k):
         cur = root
         for N in range(1001):
-            if not cur: break
+            if not cur:break#在cur为None的时候跳出循环，即可得到N（链表长度）
             cur = cur.next
         width, remainder = divmod(N, k)#分隔的链表中每个部分中都有 N//k 个结点(width)，且前 N%k 部分有一个额外的结点(remainder)
         
@@ -439,7 +439,8 @@ class Solution(object):
             dummy = ListNode(0)
             sub = dummy
             for j in range(width + (i < remainder)):
-                sub.next = sub = ListNode(cur.val)
+                sub.next = ListNode(cur.val)
+                sub = sub.next
                 if cur:
                     cur = cur.next
             ans.append(dummy.next)
