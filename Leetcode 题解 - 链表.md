@@ -386,7 +386,7 @@ class Solution:
 
 题目要求：以 O(1) 的空间复杂度来求解。
 
-切成两半，把后半段反转，然后比较两半是否相等。
+python3有简单的解法，即利用列表的反转([::-1])来判断
 
 ```python3
 # Definition for singly-linked list.
