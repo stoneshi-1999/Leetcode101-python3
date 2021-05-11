@@ -290,7 +290,7 @@ class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
         dummy = ListNode(0,head)
         temp = dummy
-        while temp.next and temp.next.next:#temp 的后面没有节点或者只有一个节点，则没有更多的节点需要交换，因此结束交换
+        while temp.next and temp.next.next:#temp 的后面没有节点**或者**只有一个节点(只要有一个发生，就停止），则没有更多的节点需要交换，因此结束交换
             node1 = temp.next
             node2 = node1.next
             temp.next = node2
