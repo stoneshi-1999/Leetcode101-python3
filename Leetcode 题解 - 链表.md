@@ -239,10 +239,10 @@ class Solution:
                 head = head.next
             return length
         
-        dummy = ListNode(0, head)#哑节点（随便
-        length = getLength(head)
+        dummy = ListNode(0, head)#哑节点（随便赋什么值，但要下一个结点需要是head
+        length = getLength(head)#是原链表的长度
         cur = dummy
-        for i in range(1, length - n + 1):
+        for i in range(length - n):
             cur = cur.next
         cur.next = cur.next.next
         return dummy.next
