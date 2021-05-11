@@ -403,6 +403,8 @@ class Solution:
 
 方法2：递归
 
+**面向对象中的self**
+
 self代表类的实例，而非类  
 类的方法与普通的函数只有一个特别的区别——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self。 
 
@@ -431,6 +433,7 @@ t = Test()
 t.prt()
 ```
 
+**解题的code：**
 ```python3
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
