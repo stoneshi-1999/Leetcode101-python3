@@ -384,9 +384,7 @@ class Solution:
 
 [Leetcode](https://leetcode.com/problems/palindrome-linked-list/description/) / [力扣](https://leetcode-cn.com/problems/palindrome-linked-list/description/)
 
-题目要求：以 O(1) 的空间复杂度来求解。
-
-python3有简单的解法，即利用列表的反转([::-1])来判断
+方法1：python3有简单的解法，即利用列表的反转([::-1])来判断
 
 ```python3
 # Definition for singly-linked list.
@@ -402,6 +400,27 @@ class Solution:
             head = head.next
         return val == val[::-1]
 ```
+
+方法2：递归
+
+```python3
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+
+        self.front_pointer = head
+
+        def recursively_check(current_node=head):
+            if current_node is not None:
+                if not recursively_check(current_node.next):
+                    return False
+                if self.front_pointer.val != current_node.val:
+                    return False
+                self.front_pointer = self.front_pointer.next
+            return True
+
+        return recursively_check()
+ ```
+
 
 ##  9. 分隔链表
 
