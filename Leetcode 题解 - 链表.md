@@ -584,3 +584,75 @@ class Solution:
         less.next=q.next
         return p.next
 ```
+##  11. 分隔链表crn
+
+86\. Partition List(Medium)
+
+[力扣](https://leetcode-cn.com/problems/partition-list/)
+
+![image](https://user-images.githubusercontent.com/70521393/117416984-7e85b800-af4c-11eb-8ae8-f9698e64a0cf.png)
+```html
+Input:
+输入：head = [1,4,3,2,5,2], x = 3
+输出：[1,2,2,4,3,5]
+```
+
+题目描述：给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
+
+你应当 保留 两个分区中每个节点的初始相对位置。
+
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        p=less=ListNode(0)
+        q=more=ListNode(0)
+
+        while head:
+            if head.val<x:
+                less.next=head
+                less=less.next
+            else:
+                more.next=head
+                more=more.next
+            head=head.next
+
+        more.next=None
+        less.next=q.next
+        return p.next
+```
+##  12. 分隔链表crn
+
+92\. Reverse Linked List II(Medium)
+
+[力扣](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+
+
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+        # 设置 dummyNode 是这一类问题的一般做法
+        dummy_node = ListNode(-1)
+        dummy_node.next = head
+        pre = dummy_node
+        for _ in range(left - 1):
+            pre = pre.next
+
+        cur = pre.next
+        for _ in range(right - left):
+            next = cur.next
+            cur.next = next.next
+            next.next = pre.next
+            pre.next = next
+        return dummy_node.next
+```
