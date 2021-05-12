@@ -610,9 +610,9 @@ class Solution:
 
         cur = pre.next
         for _ in range(right - left):
-            next = cur.next
+            temp = cur.next
             cur.next = next.next
             next.next = pre.next
-            pre.next = next
+            pre.next = temp
         return dummy_node.next
 ```
