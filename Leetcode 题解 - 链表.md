@@ -401,7 +401,7 @@ class Solution:
         return val == val[::-1]
 ```
 
-方法2：递归
+方法2：递归（效果差）
 
 **面向对象中的self**
 
@@ -473,6 +473,16 @@ The input has been split into consecutive parts with size difference at most 1, 
 如果链表有 N 个结点，则分隔的链表中每个部分中都有 N/k 个结点，且前 N%k 部分有一个额外的结点。我们可以用一个简单的循环来计算 N。 
 
 现在对于每个部分，我们已经计算出该部分有多少个节点：width + (i < remainder ? 1 : 0)。我们创建一个新列表并将该部分写入该列表。
+
+divmod(a, b)  
+参数说明：  
+a，b: 数字，非复数。 
+
+如果参数 a 与 参数 b 都是整数，函数返回的结果相当于 (a // b, a % b)。 
+
+如果其中一个参数为浮点数时，函数返回的结果相当于 (q, a % b)，q 通常是 math.floor(a / b)，但也有可能是 1 ，比小，不过 q * b + a % b 的值会非常接近 a。 
+
+如果 a % b 的求余结果不为 0 ，则余数的正负符号跟参数 b 是一样的，若 b 是正数，余数为正数，若 b 为负数，余数也为负数，并且 0 <= abs(a % b) < abs(b)。 
 
 ```python3
 class Solution(object):
