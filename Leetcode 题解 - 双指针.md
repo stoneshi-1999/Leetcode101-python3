@@ -324,9 +324,9 @@ Constraints:
 
 注意到以下性质： 
 
-左指针左边均为非零数； 
+**左指针左边均为非零数； 
 
-右指针左边直到左指针处均为零。 
+**右指针左边直到左指针处均为零。 
 
 因此每次交换，都是将左指针的零与右指针的非零数交换，且非零数的相对顺序并未改变。 
 
@@ -340,7 +340,6 @@ class Solution:
         left = right = 0
         while right < n:
             if nums[right] != 0:#调换位置时关键是右边不为0
-                print(nums[left], nums[right])
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
             right += 1
