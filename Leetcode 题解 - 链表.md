@@ -592,18 +592,18 @@ class Solution:
 
 [力扣](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
 
-cur：指向待反转区域的第一个节点 left； 
-next：永远指向 cur 的下一个节点，循环过程中，cur 变化以后 next 会变化； 
-pre：永远指向待反转区域的第一个节点 left 的前一个节点，在循环过程中不变。 
+cur：指向待反转区域的第一个节点 left；   
+next：永远指向 cur 的下一个节点，循环过程中，cur 变化以后 next 会变化；   
+pre：永远指向待反转区域的第一个节点 left 的前一个节点，在循环过程中不变。   
 
 ![image](https://user-images.githubusercontent.com/70521393/118068993-e9fcd900-b3d5-11eb-8dcf-d278f4899c93.png)
 
-操作步骤： 
+操作步骤：   
 
-先将 cur 的下一个节点记录为 next； 
-执行操作 ①：把 cur 的下一个节点指向 next 的下一个节点； 
-执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点； 
-执行操作 ③：把 pre 的下一个节点指向 next。 
+先将 cur 的下一个节点记录为 next；   
+执行操作 ①：把 cur 的下一个节点指向 next 的下一个节点；   
+执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点；   
+执行操作 ③：把 pre 的下一个节点指向 next。   
 
 ```python3
 # Definition for singly-linked list.
