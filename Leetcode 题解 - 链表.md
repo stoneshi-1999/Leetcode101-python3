@@ -622,7 +622,7 @@ class Solution:
 
         cur = pre.next
         for _ in range(right - left):
-            next = cur.next
+            next = cur.next#一定要注意上式的右边就是下式的左边，最后的右边为最早是左边，这样就连着了
             cur.next = next.next
             next.next = pre.next
             pre.next = next
