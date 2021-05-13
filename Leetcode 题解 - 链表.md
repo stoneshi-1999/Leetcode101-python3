@@ -611,7 +611,7 @@ class Solution:
         cur = pre.next
         for _ in range(right - left):
             temp = cur.next
-            cur.next = next.next
+            cur.next = temp.next
             next.next = pre.next
             pre.next = temp
         return dummy_node.next
