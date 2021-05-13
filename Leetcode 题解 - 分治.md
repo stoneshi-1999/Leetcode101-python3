@@ -21,36 +21,41 @@ Input: "2-1-1".
 Output : [0, 2]
 ```
 
-```java
-public List<Integer> diffWaysToCompute(String input) {
-    List<Integer> ways = new ArrayList<>();
-    for (int i = 0; i < input.length(); i++) {
-        char c = input.charAt(i);
-        if (c == '+' || c == '-' || c == '*') {
-            List<Integer> left = diffWaysToCompute(input.substring(0, i));
-            List<Integer> right = diffWaysToCompute(input.substring(i + 1));
-            for (int l : left) {
-                for (int r : right) {
-                    switch (c) {
-                        case '+':
-                            ways.add(l + r);
-                            break;
-                        case '-':
-                            ways.add(l - r);
-                            break;
-                        case '*':
-                            ways.add(l * r);
-                            break;
-                    }
-                }
-            }
-        }
-    }
-    if (ways.size() == 0) {
-        ways.add(Integer.valueOf(input));
-    }
-    return ways;
-}
+对于一个形如 x op y（op 为运算符，x 和 y 为数） 的算式而言，它的结果组合取决于 x 和 y 的结果组合数，而 x 和 y 又可以写成形如 x op y 的算式。 
+
+因此，该问题的子问题就是 x op y 中的 x 和 y：以运算符分隔的左右两侧算式解。 
+
+然后我们来进行 分治算法三步走： 
+
+1.分解：按运算符分成左右两部分，分别求解  
+2.解决：实现一个递归函数，输入算式，返回算式解  
+3.合并：根据运算符合并左右两部分的解，得出最终解  
+
+```python3
+class Solution:
+    def diffWaysToCompute(self, input: str) -> List[int]:
+        # 如果只有数字，直接返回
+        if input.isdigit():
+            return [int(input)]
+
+        res = []
+        for i, char in enumerate(input):
+            if char in ['+', '-', '*']:
+                # 1.分解：遇到运算符，计算左右两侧的结果集
+                # 2.解决：diffWaysToCompute 递归函数求出子问题的解
+                left = self.diffWaysToCompute(input[:i])
+                right = self.diffWaysToCompute(input[i+1:])
+                # 3.合并：根据运算符合并子问题的解
+                for l in left:
+                    for r in right:
+                        if char == '+':
+                            res.append(l + r)
+                        elif char == '-':
+                            res.append(l - r)
+                        else:
+                            res.append(l * r)
+
+        return res
 ```
 
 ## 2. 不同的二叉搜索树
