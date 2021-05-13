@@ -328,7 +328,7 @@ class Solution:
         n = len(nums)
         left = right = 0
         while right < n:
-            if nums[right] != 0:
+            if nums[right] != 0:#调换位置时关键是右边不为0
                 print(nums[left], nums[right])
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
