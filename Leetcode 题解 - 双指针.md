@@ -321,7 +321,7 @@ Constraints:
 使用双指针，左指针指向当前已经处理好的序列的尾部，右指针指向待处理序列的头部。 
 
 右指针不断向右移动，每次右指针指向非零数，则将左右指针对应的数交换，同时左指针右移。 
-![image](https://user-images.githubusercontent.com/70521393/118089496-fcd5d480-b3fa-11eb-814a-f575d7db6d95.png)
+![1111](https://user-images.githubusercontent.com/70521393/118089617-22fb7480-b3fb-11eb-8ef7-3f74d1cdda49.gif)
 
 注意到以下性质： 
 
