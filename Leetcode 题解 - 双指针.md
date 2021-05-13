@@ -8,6 +8,7 @@
     * [5. 归并两个有序数组](#5-归并两个有序数组)
     * [6. 判断链表是否存在环](#6-判断链表是否存在环)
     * [7. 最长子序列](#7-最长子序列)
+    * [8. 移动零](#8.移动零)
 <!-- GFM-TOC -->
 
 
@@ -292,3 +293,51 @@ private boolean isSubstr(String s, String target) {
     return j == target.length();
 }
 ```
+
+
+## 283. 移动零
+
+283\. Move Zeroes (Easy)
+
+[力扣](https://leetcode-cn.com/problems/move-zeroes/)
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Note that you must do this in-place without making a copy of the array.
+
+ 
+
+Example 1:
+
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+Example 2:
+
+Input: nums = [0]
+Output: [0]
+ 
+
+Constraints:
+
+1 <= nums.length <= 104
+-231 <= nums[i] <= 231 - 1
+
+```python3
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        left = right = 0
+        while right < n:
+            if nums[right] != 0:
+                print(nums[left], nums[right])
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+            right += 1
+```
+复杂度分析
+
+时间复杂度：O(n)，其中 n 为序列长度。每个位置至多被遍历两次。
+
+空间复杂度：O(1)。只需要常数的空间存放若干变量。
