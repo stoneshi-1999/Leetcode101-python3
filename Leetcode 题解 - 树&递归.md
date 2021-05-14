@@ -96,9 +96,33 @@ class Solution:
 
 平衡树左右子树高度差都小于等于 1
 
-```python
+**自底向上递归**的做法类似于后序遍历，对于当前遍历到的节点，先递归地判断其左右子树是否平衡，再判断以当前节点为根的子树是否平衡。  
 
+如果使用自底向上的做法，则对于每个节点，函数 \texttt{height}height 只会被调用一次。
+
+如果一棵子树是平衡的，则返回其高度（高度一定是非负整数），否则返回 -1。如果存在一棵子树不平衡，则整个二叉树一定不平衡。  
+
+```python
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def height(root: TreeNode) -> int:
+            if not root:
+                return 0
+            leftHeight = height(root.left)
+            rightHeight = height(root.right)
+            if leftHeight == -1 or rightHeight == -1 or abs(leftHeight - rightHeight) > 1:
+                return -1
+            else:
+                return max(leftHeight, rightHeight) + 1
+
+        return height(root) >= 0
 ```
+复杂度分析
+
+时间复杂度：O(n)，其中 nn 是二叉树中的节点个数。使用自底向上的递归，每个节点的计算高度和判断是否平衡都只需要处理一次，最坏情况下需要遍历二叉树中的所有节点，因此时间复杂度是 O(n)。
+
+空间复杂度：O(n)，其中 nn 是二叉树中的节点个数。空间复杂度主要取决于递归调用的层数，递归调用的层数不会超过 n。
+
 
 ### 3. 两节点的最长路径
 
