@@ -630,7 +630,7 @@ class Solution:
         return dummy_node.next
 ```
 
-##  13.环形链表
+##  13. 环形链表
 141\. Linked List Cycle
 
 [力扣](https://leetcode-cn.com/problems/linked-list-cycle/)
