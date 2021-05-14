@@ -13,6 +13,7 @@
     * [10. 链表元素按奇偶聚集](#10-链表元素按奇偶聚集)
     * [11. 分隔链表crn](#11-分隔链表crn)
     * [12. 反转链表II](#12-反转链表II)
+    * [13.环形链表](#13-环形链表)
 <!-- GFM-TOC -->
 
 
@@ -628,3 +629,29 @@ class Solution:
             pre.next = next
         return dummy_node.next
 ```
+
+##  13.环形链表
+141\. Linked List Cycle
+
+[力扣](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        slow = fast = head
+        while fast and fast.next:# 防止head为空和出现空指针的next的情况
+            slow = slow.next
+            fast = fast.next.next
+            if slow is fast:
+                return True
+
+        return False
+```
+
