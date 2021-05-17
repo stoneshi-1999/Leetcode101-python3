@@ -298,7 +298,7 @@ class Solution:
             temp.next = node2
             node1.next = node2.next
             node2.next = node1
-            temp = node1
+            temp = node1#从往后两个（node1换成temp.next.next也行）开始，因为是两两交换
         return dummy.next
 ```
 
