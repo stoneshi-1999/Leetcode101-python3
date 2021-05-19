@@ -453,7 +453,75 @@ class Solution:
 
         return recursively_check()
  ```
+ 
+ 方法3：快慢指针
+ 整个流程可以分为以下五个步骤：
 
+1.找到前半部分链表的尾节点。
+2.反转后半部分链表。
+3.判断是否回文。
+4.恢复链表。
+5.返回结果。
+执行步骤一，我们可以计算链表节点的数量，然后遍历链表找到前半部分的尾节点。
+
+我们也可以使用快慢指针在一次遍历中找到：慢指针一次走一步，快指针一次走两步，快慢指针同时出发。当快指针移动到链表的末尾时，慢指针恰好到链表的中间。通过慢指针将链表分为两部分。
+
+若链表有奇数个节点，则中间的节点应该看作是前半部分。
+
+步骤二可以使用「206. 反转链表」问题中的解决方法来反转链表的后半部分。
+
+步骤三比较两个部分的值，当后半部分到达末尾则比较完成，可以忽略计数情况中的中间节点。
+
+步骤四与步骤二使用的函数相同，再反转一次恢复链表本身。
+
+```python3
+class Solution:
+
+    def isPalindrome(self, head: ListNode) -> bool:
+        if head is None:
+            return True
+
+        # 找到前半部分链表的尾节点并反转后半部分链表
+        first_half_end = self.end_of_first_half(head)
+        second_half_start = self.reverse_list(first_half_end.next)
+
+        # 判断是否回文
+        result = True
+        first_position = head
+        second_position = second_half_start
+        while result and second_position is not None:
+            if first_position.val != second_position.val:
+                result = False
+            first_position = first_position.next
+            second_position = second_position.next
+
+        # 还原链表并返回结果
+        first_half_end.next = self.reverse_list(second_half_start)
+        return result    
+
+    def end_of_first_half(self, head):
+        fast = head
+        slow = head
+        while fast.next is not None and fast.next.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
+
+    def reverse_list(self, head):
+        previous = None
+        current = head
+        while current is not None:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+        return previous
+```
+复杂度分析
+
+时间复杂度：O(n)，其中 n 指的是链表的大小。
+
+空间复杂度：O(1)。我们只会修改原本链表中节点的指向，而在堆栈上的堆栈帧不超过 O(1)。
 
 ##  9. 分隔链表
 
