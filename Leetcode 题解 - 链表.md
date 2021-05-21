@@ -568,12 +568,12 @@ class Solution(object):
         for i in range(k):
             dummy = ListNode(0)
             sub = dummy
-            for j in range(width + (i < remainder)):
+            for j in range(width + (i < remainder)):#注意后面是i<remainder！
                 sub.next = ListNode(cur.val)
                 sub = sub.next
                 if cur:
                     cur = cur.next
-            ans.append(dummy.next)
+            ans.append(dummy.next)#用了哑节点的，最后都是dummy.next啊
         return ans
 ```
 
