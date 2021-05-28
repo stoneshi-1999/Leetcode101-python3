@@ -90,7 +90,7 @@ class Solution:
 
 [Leetcode](https://leetcode.com/problems/reverse-linked-list/description/) / [力扣](https://leetcode-cn.com/problems/reverse-linked-list/description/)
 
-迭代
+法1：迭代
 
 ![image](https://user-images.githubusercontent.com/70521393/117388602-a1e53e80-af1d-11eb-9a8f-ed76392f8798.png)
 
@@ -111,7 +111,7 @@ class Solution:
 时间复杂度：O(n)
 空间复杂度：O(1)
 
-递归  [讲解](https://leetcode-cn.com/problems/reverse-linked-list/solution/shi-pin-jiang-jie-die-dai-he-di-gui-hen-hswxy/)
+法2：递归  [讲解](https://leetcode-cn.com/problems/reverse-linked-list/solution/shi-pin-jiang-jie-die-dai-he-di-gui-hen-hswxy/)
 
 ```python3
 class Solution:
@@ -127,6 +127,38 @@ class Solution:
 ```
 时间复杂度：O(n)
 空间复杂度：O(n)
+
+法3：队列+头插法
+
+### 解题思路
+此处撰写解题思路
+1.先将所有链表的值放入队列中；
+
+2.使用头插法，将每次出队的值放在dummy后面，（注意头插法，后插入的在链表左边/前面）
+
+```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        #1.先将所有链表的值放入队列中；
+        queue = collections.deque()
+        while head:
+            queue.append(head.val)
+            head = head.next
+
+        #2.使用头插法，将每次出队的值放在dummy后面，（注意头插法，后插入的在链表左边/前面）
+        dummy = ListNode(-1)
+        while queue:
+            cur = ListNode(queue.popleft())
+            cur.next = dummy.next
+            dummy.next = cur
+            
+        return dummy.next
+```
 
 ##  3. 归并两个有序的链表
 
