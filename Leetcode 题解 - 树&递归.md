@@ -236,6 +236,14 @@ Output:
      5   4   7
 ```
 
+递归
+对于两棵树的同一位置，只会存在三种情况：  
+
+1.两树非空，那么 root1.val = root1.val + root2.val    
+2.Tree1Tree1 或 Tree2Tree2 其中一颗不存在, 只需将存在的那个节点返回给上层。 
+3.两树都空，返回空。(代码中利用第二点的顺序判定已经将此种情况涵盖，故不需要单独写出)
+
+
 ```python3
 # Definition for a binary tree node.
 # class TreeNode:
