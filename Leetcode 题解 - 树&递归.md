@@ -4,7 +4,7 @@
     * [递归](#递归)
         * [1. 树的高度](#1-树的高度)
         * [2. 平衡树](#2-平衡树)
-        * [3. 两节点的最长路径](#3-两节点的最长路径)
+        * [3. 二叉树的直径](#3-二叉树的直径)
         * [4. 翻转树](#4-翻转树)
         * [5. 归并两棵树](#5-归并两棵树)
         * [6. 判断路径和是否等于一个数](#6-判断路径和是否等于一个数)
@@ -124,9 +124,11 @@ class Solution:
 空间复杂度：O(n)，其中 n 是二叉树中的节点个数。空间复杂度主要取决于递归调用的层数，递归调用的层数不会超过 n。
 
 
-### 3. 两节点的最长路径
+### 3. 二叉树的直径
 
 543\. Diameter of Binary Tree (Easy)
+
+给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。
 
 [Leetcode](https://leetcode.com/problems/diameter-of-binary-tree/description/) / [力扣](https://leetcode-cn.com/problems/diameter-of-binary-tree/description/)
 
@@ -142,8 +144,47 @@ Input:
 Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
 ```
 
-```python
+```python3
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.ans = 1
+        def depth(node):
+            if not node:
+                return 0
+            
+            L = depth(node.left)
+            R = depth(node.right)
+            
+            self.ans = max(self.ans , L+R+1)#以该节点为起点的路径经过节点数的最大值即为L+R+1
+            return max(L,R) + 1
 
+        depth(root)
+        return self.ans - 1#一条路径的长度为该路径经过的节点数减一（两节点之间边的数目）
+```
+```python3
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.ans = 1
+        def depth(node):
+            # 访问到空节点了，返回0
+            if not node:
+                return 0
+            # 左儿子为根的子树的深度
+            L = depth(node.left)
+            # 右儿子为根的子树的深度
+            R = depth(node.right)
+            self.ans = max(self.ans, L + R)#以该节点为起点的路径长度L+R
+            # 返回该节点为根的子树的深度
+            return max(L, R) + 1
+
+        depth(root)
+        return self.ans#返回以root节点为起点的路径长度
 ```
 
 ### 4. 翻转树
@@ -152,8 +193,18 @@ Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
 
 [Leetcode](https://leetcode.com/problems/invert-binary-tree/description/) / [力扣](https://leetcode-cn.com/problems/invert-binary-tree/description/)
 
-```python
+我们从根节点开始，递归地对树进行遍历，并从叶子结点先开始翻转。如果当前遍历到的节点 root 的左右两棵子树都已经翻转，那么我们只需要交换两棵子树的位置，即可完成以 root 为根节点的整棵子树的翻转。
 
+```python
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+        root.left, root.right = right, left
+        return root
 ```
 
 ### 5. 归并两棵树
