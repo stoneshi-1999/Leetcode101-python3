@@ -6,7 +6,7 @@
         * [2. 平衡树](#2-平衡树)
         * [3. 二叉树的直径](#3-二叉树的直径)
         * [4. 翻转树](#4-翻转树)
-        * [5. 归并两棵树](#5-归并两棵树)
+        * [5. 合并两棵树](#5-合并两棵树)
         * [6. 判断路径和是否等于一个数](#6-判断路径和是否等于一个数)
         * [7. 统计路径和等于一个数的路径数量](#7-统计路径和等于一个数的路径数量)
         * [8. 子树](#8-子树)
@@ -213,7 +213,7 @@ class Solution:
 空间复杂度：O(N)。使用的空间由递归栈的深度决定，它等于当前节点在二叉树中的高度。在平均情况下，二叉树的高度与节点个数为对数关系，即O(logN)。而在最坏情况下，树形成链状，空间复杂度为 O(N)。
 
 
-### 5. 归并两棵树
+### 5. 合并两棵树
 
 617\. Merge Two Binary Trees (Easy)
 
@@ -236,16 +236,24 @@ Output:
      5   4   7
 ```
 
-```java
-public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
-    if (t1 == null && t2 == null) return null;
-    if (t1 == null) return t2;
-    if (t2 == null) return t1;
-    TreeNode root = new TreeNode(t1.val + t2.val);
-    root.left = mergeTrees(t1.left, t2.left);
-    root.right = mergeTrees(t1.right, t2.right);
-    return root;
-}
+```python3
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        if not root1:
+            return root2
+        if not root2:
+            return root1
+        
+        merged = TreeNode(root1.val + root2.val)#值为root.val+root2.val的节点
+        merged.left = self.mergeTrees(root1.left , root2.left)
+        merged.right = self.mergeTrees(root1.right , root2.right)
+        return merged
 ```
 
 ### 6. 判断路径和是否等于一个数
