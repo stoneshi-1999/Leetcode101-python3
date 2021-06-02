@@ -8,7 +8,7 @@
         * [4. 翻转树](#4-翻转树)
         * [5. 合并两棵树](#5-合并两棵树)
         * [6. 路径总和](#6-路径总和)
-        * [7. 统计路径和等于一个数的路径数量](#7-统计路径和等于一个数的路径数量)
+        * [7. 路径总和 III](#7-路径总和 III)
         * [8. 子树](#8-子树)
         * [9. 树的对称](#9-树的对称)
         * [10. 最小路径](#10-最小路径)
@@ -311,9 +311,9 @@ class Solution:
 空间复杂度：O(H)，其中 H 是树的高度。空间复杂度主要取决于递归时栈空间的开销，最坏情况下，树呈现链状，空间复杂度为 O(N)。平均情况下树的高度与节点数的对数正相关，空间复杂度为 O(log N)。
 
 
-### 7. 统计路径和等于一个数的路径数量
+### 7. 路径总和 III
 
-437\. Path Sum III (Easy)
+437\. Path Sum III (Medium)
 
 [Leetcode](https://leetcode.com/problems/path-sum-iii/description/) / [力扣](https://leetcode-cn.com/problems/path-sum-iii/description/)
 
@@ -337,20 +337,76 @@ Return 3. The paths that sum to 8 are:
 
 路径不一定以 root 开头，也不一定以 leaf 结尾，但是必须连续。
 
-```java
-public int pathSum(TreeNode root, int sum) {
-    if (root == null) return 0;
-    int ret = pathSumStartWithRoot(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
-    return ret;
-}
+解题思路
+只需一次递归五行代码，用列表记录下当前结果即可，为什么要双重递归呢？
 
-private int pathSumStartWithRoot(TreeNode root, int sum) {
-    if (root == null) return 0;
-    int ret = 0;
-    if (root.val == sum) ret++;
-    ret += pathSumStartWithRoot(root.left, sum - root.val) + pathSumStartWithRoot(root.right, sum - root.val);
-    return ret;
-}
+sumlist[]记录当前路径上的和，在如下样例中：
+
+      10
+     /  \
+    5   -3
+   / \    \
+  3   2   11
+ / \   \
+3  -2   1
+当DFS刚走到2时，此时sumlist[]从根节点10到2的变化过程为：
+
+    10
+    15 5
+    17 7 2
+当DFS继续走到1时，此时sumlist[]从节点2到1的变化为：
+
+    18 8 3 1   
+因此，只需计算每一步中，sum在数组sumlist中出现的次数，然后与每一轮递归的结果相加即可
+
+count = sumlist.count(sum)等价于：
+
+ count = 0
+ for num in sumlist:
+     if num == sum:
+         count += 1
+count计算本轮sum在数组sumlist中出现的次数
+
+```python3
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+# 精简版，五行代码不解释
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> int:
+        def dfs(root, sumlist):
+            if root is None: return 0
+            sumlist = [num + root.val for num in sumlist] + [root.val]
+            return sumlist.count(sum) + dfs(root.left, sumlist) + dfs(root.right, sumlist)
+        return dfs(root, [])
+```
+
+```python3
+# 展开版，易理解
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> int:
+
+        def dfs(root, sumlist):
+            if root is None:
+                return 0
+            
+            sumlist = [num+root.val for num in sumlist]
+            sumlist.append(root.val)
+            
+            count = 0
+            for num in sumlist:
+                if num == sum:
+                    count += 1
+            # count = sumlist.count(sum)
+
+            return count + dfs(root.left, sumlist) + dfs(root.right, sumlist)
+
+        return dfs(root, [])
 ```
 
 ### 8. 子树
