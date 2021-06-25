@@ -449,18 +449,27 @@ Given tree t:
 Return false.
 ```
 
-```java
-public boolean isSubtree(TreeNode s, TreeNode t) {
-    if (s == null) return false;
-    return isSubtreeWithRoot(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
-}
-
-private boolean isSubtreeWithRoot(TreeNode s, TreeNode t) {
-    if (t == null && s == null) return true;
-    if (t == null || s == null) return false;
-    if (t.val != s.val) return false;
-    return isSubtreeWithRoot(s.left, t.left) && isSubtreeWithRoot(s.right, t.right);
-}
+```python3
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        if not root and not subRoot:
+            return True
+        if not root or not subRoot:
+            return False
+        return self.isSametree(root,subRoot) or self.isSubtree(root.left , subRoot) or self.isSubtree(root.right , subRoot)
+    
+    def isSametree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        if not root and not subRoot:
+            return True
+        if not root or not subRoot:
+            return False
+        return root.val == subRoot.val and self.isSametree(root.left , subRoot.left) and self.isSametree(root.right , subRoot.right)
 ```
 
 ### 9. 树的对称
