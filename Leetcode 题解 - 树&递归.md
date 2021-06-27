@@ -501,9 +501,9 @@ class Solution(object):
 			# 递归的终止条件是两个节点都为空
 			# 或者两个节点中有一个为空
 			# 或者两个节点的值不相等
-			if not (left or right):
+			if not (left or right):#等价于 not left and not right
 				return True
-			if not (left and right):
+			if not (left and right):#等价于 not left or not right
 				return False
 			if left.val!=right.val:
 				return False
