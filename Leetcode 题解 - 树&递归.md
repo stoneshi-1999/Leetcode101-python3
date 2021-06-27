@@ -9,7 +9,7 @@
         * [5. 合并两棵树](#5-合并两棵树)
         * [6. 路径总和](#6-路径总和)
         * [7. 路径总和III](#7-路径总和III)
-        * [8. 子树](#8-子树)
+        * [8. 另一个树的子树](#8-另一个树的子树)
         * [9. 树的对称](#9-树的对称)
         * [10. 最小路径](#10-最小路径)
         * [11. 统计左叶子节点的和](#11-统计左叶子节点的和)
@@ -410,7 +410,7 @@ class Solution:
         return dfs(root, [])
 ```
 
-### 8. 子树
+### 8. 另一个树的子树
 
 572\. Subtree of Another Tree (Easy)
 
@@ -462,6 +462,7 @@ class Solution:
             return True
         if not root or not subRoot:
             return False
+        #判断是子树的逻辑都是或
         return self.isSametree(root,subRoot) or self.isSubtree(root.left , subRoot) or self.isSubtree(root.right , subRoot)
     
     def isSametree(self, root: TreeNode, subRoot: TreeNode) -> bool:
@@ -469,6 +470,7 @@ class Solution:
             return True
         if not root or not subRoot:
             return False
+        #判断相等的逻辑都是与
         return root.val == subRoot.val and self.isSametree(root.left , subRoot.left) and self.isSametree(root.right , subRoot.right)
 ```
 
@@ -486,18 +488,28 @@ class Solution:
 3  4 4  3
 ```
 
-```java
-public boolean isSymmetric(TreeNode root) {
-    if (root == null) return true;
-    return isSymmetric(root.left, root.right);
-}
-
-private boolean isSymmetric(TreeNode t1, TreeNode t2) {
-    if (t1 == null && t2 == null) return true;
-    if (t1 == null || t2 == null) return false;
-    if (t1.val != t2.val) return false;
-    return isSymmetric(t1.left, t2.right) && isSymmetric(t1.right, t2.left);
-}
+```python3
+class Solution(object):
+	def isSymmetric(self, root):
+		"""
+		:type root: TreeNode
+		:rtype: bool
+		"""
+		if not root:
+			return True
+		def dfs(left,right):
+			# 递归的终止条件是两个节点都为空
+			# 或者两个节点中有一个为空
+			# 或者两个节点的值不相等
+			if not (left or right):
+				return True
+			if not (left and right):
+				return False
+			if left.val!=right.val:
+				return False
+			return dfs(left.left,right.right) and dfs(left.right,right.left)
+		# 用递归函数，比较左节点，右节点
+		return dfs(root.left,root.right)
 ```
 
 ### 10. 最小路径
